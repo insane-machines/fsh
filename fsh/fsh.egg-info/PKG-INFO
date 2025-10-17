@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: fsh
+Version: 0.1.0
+Summary: Machinelearning library
+Author-email: insane-machines <forshnikita@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/insane-machines/fsh
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
