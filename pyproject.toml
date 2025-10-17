@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fsh" 
+version = "0.1.0"
+description = "Machinelearning library"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "insane-machines", email = "forshnikita@gmail.com"}]
+dependencies = ["numpy"] 
+
+[project.urls]
+Homepage = "https://github.com/insane-machines/fsh"

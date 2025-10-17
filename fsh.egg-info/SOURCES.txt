@@ -1,0 +1,7 @@
+fsh.py
+pyproject.toml
+fsh.egg-info/PKG-INFO
+fsh.egg-info/SOURCES.txt
+fsh.egg-info/dependency_links.txt
+fsh.egg-info/requires.txt
+fsh.egg-info/top_level.txt
