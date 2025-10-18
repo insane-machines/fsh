@@ -1,21 +1,24 @@
-from math import nan
 import numpy as np
+from numpy.random import normal
 
 class Linear():
-    def __init__(self, lr = 0.001):
-        self.lr = lr
-        self.weight = 1
-        self.bias = 1
+    def __init__(self, n_features=1, lr = 0.001):
+        self.lr         = lr
+        self.weight     = np.random.randn(n_features, 1)
+        self.bias       = 1
+        self.n_features = n_features
     def predict(self, x, training=False):
-        y_pred = self.weight*x + self.bias
+        y_pred = x @ self.weight + self.bias
         if not training:
             print(f'▶ Predicted output for x = {x}: {y_pred}')
         return y_pred
+
     def mse(self, y, y_pred, training=False):
-        loss = np.mean((y-y_pred)**2)
+        loss = np.mean((y.flatten()-y_pred.flatten())**2)
         if not training:
             print(f'MSE: {loss}')
         return loss
+
     def calc_diff(self, param_name, x, y, d_h=1e-5, training=True):
         orig_num = getattr(self, param_name)
         
@@ -29,9 +32,20 @@ class Linear():
 
         grad = (loss_p - loss_m) / (2 * d_h)
         return grad
-        
+
+    def calc_grad(self, x, y, training=True):
+        error = y - self.predict(x, training=training)
+        n = x.shape[0]
+        grad_w = -2 / n * (x.T @ error)
+        grad_b = -2 / n * np.sum(error)
+
+        return grad_w, grad_b
+
     def train(self, x, y, epochs=50, val_data=None, training=True, view_epoch=1, batch_size=1, \
                                                                                     diff_height=1e-5):
+        x = preprocessing.to_array(x)
+        y = preprocessing.to_array(y)
+
         if type(val_data) == list:
             if len(val_data) < 2:
                 raise DataError(f'validation list is out of range, expected: 2, got: {len(val_data)}')
@@ -39,11 +53,14 @@ class Linear():
             val_y = val_data[1]
             if type(val_x) != np.ndarray or type(val_y) != np.ndarray:
                 raise DataError(f'InvalidType: needs <np.ndarray()>, got {type(val_data)}')
+
         elif val_data == None:
             val_x = None
             val_y = None
+
         else:
             raise DataError('val_data is not a list')
+        #MAIN CYCLE
         for epoch in range(1, epochs+1):
             if type(x) != np.ndarray or type(y) != np.ndarray:
                 raise DataError(f'TypeError: Invalid type of training data: needs <np.ndarray>')
@@ -57,11 +74,10 @@ class Linear():
             for batch in range(len(x_data)):
                 x_batch = x_data[batch]
                 y_batch = y_data[batch]
-                grad_w = self.calc_diff('weight', x_batch, y_batch, d_h=diff_height)
-                grad_b = self.calc_diff('bias', x_batch, y_batch, d_h=diff_height)
+                grad_w, grad_b = self.calc_grad(x_batch, y_batch, training=training)
             
                 self.weight -= self.lr * grad_w
-                self.bias -= self.lr * grad_b
+                self.bias   -= self.lr * grad_b
 
                 y_pred = self.predict(x_batch, training)
                 loss = self.mse(y_batch, y_pred, training)
@@ -78,14 +94,35 @@ class Linear():
                         per = 20
                     print("▮"*per+"▯"*(20-per),\
                           f"Epoch {epoch}, loss: {loss}" + valprint)
+
 class metrics():
     pass
+
 class callbacks():
     pass
+
 class preprocessing():
-    pass
+    def __init__(self):
+        pass
+    @staticmethod
+    def normalize(array):
+        arr_mean = np.mean(array)
+        arr_std = np.std(array)
+        arr_norm = (array-arr_mean)/arr_std
+        return arr_norm, arr_mean, arr_std
+    @staticmethod
+    def denormalize(normalized, std, mean):
+        array = normalized * std + mean
+        return array
+    @staticmethod
+    def to_array(dataframe):
+        array = np.asarray(dataframe)
+        return array
+
 class MatchError(Exception):
     pass
 class DataError(Exception):
+    pass
+class ProcessError(Exception):
     pass
         
