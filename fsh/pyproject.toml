@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fsh" 
-version = "0.1.0"
+version = "1.0.6"
 description = "Machinelearning library"
 readme = "README.md"
 license = {text = "MIT"}
