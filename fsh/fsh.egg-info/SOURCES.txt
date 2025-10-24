@@ -4,5 +4,6 @@ fsh/fsh.py
 fsh.egg-info/PKG-INFO
 fsh.egg-info/SOURCES.txt
 fsh.egg-info/dependency_links.txt
+fsh.egg-info/logo.jpg
 fsh.egg-info/requires.txt
 fsh.egg-info/top_level.txt

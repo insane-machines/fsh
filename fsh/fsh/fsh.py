@@ -8,7 +8,7 @@ class Linear():
         self.bias       = 1
         self.n_features = n_features
         self.stop = False
-        self.history = {'loss': [], 'val_loss': []}
+        self.history = {'epoch': [], 'loss': [], 'val_loss': []}
     def predict(self, x, training=False):
         y_pred = x @ self.weight + self.bias
         if not training:
@@ -91,6 +91,7 @@ class Linear():
             logs = {'loss': loss, 'val_loss': val_loss}
             self.history['loss'].append(loss)
             self.history['val_loss'].append(val_loss)
+            self.history['epoch'].append(epoch)
             if callbacks is not None:
                 for cb in callbacks:
                     cb(self, logs)
