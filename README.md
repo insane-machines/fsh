@@ -1,4 +1,5 @@
-This is our machineearning library named FORWARD STEPWISE HEURISTICS!
+<h1 align="center">Hi, we are <a href="https://daniilshat.ru/" target="_blank">insane_machines</a>!</h1>
+<h1 align="left">This is our machinelearning library named <a>FORWARD STEPWISE HEURISTICS</a></h1>
 <p align='left'>
   <img src='https://github.com/insane-machines/fsh/blob/main/fsh/fsh.egg-info/logo.jpg'>
 </p>
