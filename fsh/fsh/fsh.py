@@ -15,20 +15,6 @@ class Linear():
             print(f'▶ Predicted output for x = {x}: {y_pred}')
         return y_pred
 
-    def calc_diff(self, param_name, x, y, d_h=1e-5, training=True):
-        orig_num = getattr(self, param_name)
-        
-        setattr(self, param_name, orig_num+d_h)
-        loss_p = metrics.mse(y, self.predict(x, training), training)
-        
-        setattr(self, param_name, orig_num-d_h)
-        loss_m = metrics.mse(y, self.predict(x, training), training)
-        
-        setattr(self, param_name, orig_num)
-
-        grad = (loss_p - loss_m) / (2 * d_h)
-        return grad
-
     def calc_grad(self, x, y, training=True):
         error = y - self.predict(x, training=training)
         n = x.shape[0]
@@ -37,8 +23,7 @@ class Linear():
 
         return grad_w, grad_b
 
-    def train(self, x, y, val_x=None, val_y=None, epochs=50, loss_fn=None, training=True, callbacks=None, view_epoch=1, batch_size=1, \
-                                                                                    diff_height=1e-5):
+    def train(self, x, y, val_x=None, val_y=None, epochs=50, loss_fn=None, training=True, callbacks=None, view_epoch=1, batch_size=1):
         x = preprocessing.to_array(x)
         y = preprocessing.to_array(y)
 
@@ -48,6 +33,8 @@ class Linear():
         
         if loss_fn is None:
             loss_fn = metrics.mse
+
+        print('## FSH: training starting ##')
         #MAIN CYCLE
         for epoch in range(1, epochs+1):
             if type(x) != np.ndarray or type(y) != np.ndarray:
@@ -97,8 +84,9 @@ class Linear():
                     cb(self, logs)
             
             if self.stop:
-                print(f'Early stopped at the epoch {epoch}')
+                print(f'FSH: Early stopped at the epoch {epoch}')
                 break
+        print('## FSH: training stopped ##')
 
 class metrics():
     @staticmethod
@@ -159,13 +147,19 @@ class callbacks():
 
 class preprocessing():
     @staticmethod
-    def normalize(array):
-        arr_mean    = np.mean(array)
-        arr_std     = np.std(array)
-        arr_norm    = (array-arr_mean)/arr_std
+    def normalize(array, mean=None, std=None):
+        if mean is not None and std is not None:
+            arr_mean = mean
+            arr_std = std
+        elif (mean is None and std is not None) or (mean is not None and std is None):
+            raise DataError('one of the normalize components is none, and another is not none')
+        else:
+            arr_mean    = np.mean(array)
+            arr_std     = np.std(array)
+        arr_norm = (array-arr_mean)/arr_std
         return arr_norm, arr_mean, arr_std
     @staticmethod
-    def denormalize(normalized, std, mean):
+    def denormalize(normalized, mean, std):
         array = normalized * std + mean
         return array
     @staticmethod
