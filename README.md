@@ -10,17 +10,17 @@
     <img src="https://img.shields.io/badge/Insane%20Machines-Telegram-blue?style=for-the-badge&logo=telegram" alt="Telegram link" />
   </a>
 </p>
-⚙️ Features
+Features
 
 Linear model with: 
-✅ **Callbacks**
-✅ **Metrics** 
-✅ **Preprocessing functions**
-✅ **Simple integration**  
+• **Callbacks**
+• **Metrics** 
+• **Preprocessing functions**
+• **Simple integration**  
 
 ---
 
-🚀 Quick Start
+Quick Start
 
 ```python
 import fsh
