@@ -33,10 +33,8 @@ X = fsh.fsh.preprocessing.to_array(X)
 y = fsh.fsh.preprocessing.to_array(y)
 
 callback = fsh.fsh.callbacks.History()
-model = fsh.fsh.Linear(n_features=3, lr=0.01)
+model = fsh.fsh.Linear(n_features=2, lr=0.01)
 
-# Обучение
-model.fit(X, y, epochs=100, callbacks=[callback], metrics=fsh.fsh.metrics.mse)
-
-# Прогноз
-y_pred = model.predict(X)
+# Training
+model.train(X, y, epochs=100, callbacks=[callback], loss_fn=fsh.fsh.metrics.mse)
+model.predict(X)
