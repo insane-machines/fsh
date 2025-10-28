@@ -2,7 +2,7 @@
   <img src="https://github.com/insane-machines/fsh/blob/main/fsh/fsh.egg-info/logo.jpg"></img>
 </h1>
 <h1 align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=00FFAA&center=true&vCenter=true&width=500&lines=Hi,+we're+Insane+Machines!;Welcome+to+Forward+Stepwise+Heuristics!" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=00FFAA&center=true&vCenter=true&width=500&lines=Hi,+we're+Insane+Machines!;Welcome+to++our+machinelearning+library;named+Forward+Stepwise+Heuristics!" alt="Typing SVG" />
 </h1>
 
 <p align="center">
