@@ -23,18 +23,18 @@ Linear model with:
 Quick Start
 
 ```python
-import fsh
+from fsh import preprocessing, callbacks, Linear, metrics
 
-X = [[1, 2], [3, 4]]
-y = [[5], [6]]
+X = [[-1, 0], [1, 2], [3, 4], [5, 6]]
+y = [[0], [1], [2], [3]]
 
 #array converting is integrated! but you can do it yourself!
-X = fsh.fsh.preprocessing.to_array(X)
-y = fsh.fsh.preprocessing.to_array(y)
+X = preprocessing.to_array(X)
+y = preprocessing.to_array(y)
 
-callback = fsh.fsh.callbacks.History()
-model = fsh.fsh.Linear(n_features=2, lr=0.01)
+callback = callbacks.History()
+model = Linear(n_features=2, lr=0.01)
 
-# Training
-model.train(X, y, epochs=100, callbacks=[callback], loss_fn=fsh.fsh.metrics.mse)
-model.predict(X)
+#Training
+model.train(X, y, epochs=10000,view_epoch=100, callbacks=[callback], loss_fn=metrics.mse)
+model.predict([7, 8])
