@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fsh" 
-version = "1.0.6"
+version = "1.3.6"
 description = "Machinelearning library"
 readme = "README.md"
 license = {text = "MIT"}
@@ -13,3 +13,6 @@ dependencies = ["numpy"]
 
 [project.urls]
 Homepage = "https://github.com/insane-machines/fsh"
+
+[tool.setuptools.packages.find]
+include = ["fsh*"]

@@ -1,13 +1,3 @@
-Metadata-Version: 2.4
-Name: fsh
-Version: 1.3.6
-Summary: Machinelearning library
-Author-email: insane-machines <forshnikita@gmail.com>
-License: MIT
-Project-URL: Homepage, https://github.com/insane-machines/fsh
-Description-Content-Type: text/markdown
-Requires-Dist: numpy
-
 <h1 align="center">
   <img src="https://github.com/insane-machines/fsh/blob/main/fsh/fsh.egg-info/logo.jpg"></img>
 </h1>
