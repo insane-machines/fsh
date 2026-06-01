@@ -21,11 +21,12 @@ class callbacks():
                     self.wait += 1
 
             if self.wait >= self.patience:
-                model.stop = True
+                model.stop_training = True
             else:
-                model.stop = False
+                model.stop_training = False
+
     class History():
-        def __init__(self) -> None:
+        def __init__(self):
             self.history = {'epoch': [], 'loss': [], 'val_loss': []}
         def __call__(self, model, log):
             epoch = log.get('epoch')
