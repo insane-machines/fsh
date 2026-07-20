@@ -1,5 +1,5 @@
 import numpy as np
-from fsh.errors.errors import DataError
+from _exceptions._errors import DataError
 
 class preprocessing():
 
