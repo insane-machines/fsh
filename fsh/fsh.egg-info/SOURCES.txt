@@ -1,6 +1,5 @@
 README.md
 pyproject.toml
-fsh/__init__.py
 fsh.egg-info/PKG-INFO
 fsh.egg-info/SOURCES.txt
 fsh.egg-info/dependency_links.txt
@@ -9,11 +8,14 @@ fsh.egg-info/requires.txt
 fsh.egg-info/top_level.txt
 fsh/_exceptions/__init__.py
 fsh/_exceptions/_errors.py
-fsh/_utils/__init__.py
+fsh/autograd/__init__.py
+fsh/autograd/tensor.py
 fsh/backend/__init__.py
 fsh/backend/backend_manager.py
-fsh/core/__init__.py
-fsh/core/tensor.py
+fsh/backend/cpu/__init__.py
+fsh/backend/cpu/numpy_backend.py
+fsh/backend/cuda/__init__.py
+fsh/backend/cuda/cuda_backend.py
 fsh/data/preprocessing/__init__.py
 fsh/data/preprocessing/preprocess.py
 fsh/metrics/__init__.py

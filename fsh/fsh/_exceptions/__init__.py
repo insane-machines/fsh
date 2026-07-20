@@ -1,3 +1,4 @@
-__all__ = ["errors"]
+from _errors import DataError, MatchError, ProcessError
+__all__ = ["DataError", "MatchError", "ProcessError"]
 
 

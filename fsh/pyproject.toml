@@ -9,7 +9,7 @@ description = "Machinelearning library"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [{name = "insane-machines", email = "forshnikita@gmail.com"}]
-dependencies = ["numpy"] 
+dependencies = ["numpy", "cupy"] 
 
 [project.urls]
 Homepage = "https://github.com/insane-machines/fsh"
@@ -19,6 +19,7 @@ include = ["fsh*"]
 
 [dependency-groups]
 dev = [
+    "cupy",
     "mypy>=2.3.0",
     "pytest>=9.1.1",
     "ruff>=0.15.22",
