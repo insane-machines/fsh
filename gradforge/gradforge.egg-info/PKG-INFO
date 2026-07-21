@@ -1,10 +1,10 @@
 Metadata-Version: 2.4
 Name: gradforge
-Version: 2.0
+Version: 2.0.1
 Summary: Machinelearning library
 Author-email: insane-machines <forshnikita@gmail.com>
 License: MIT
-Project-URL: Homepage, https://github.com/insane-machines/fsh
+Project-URL: Homepage, https://github.com/nikitaforsh/fsh
 Description-Content-Type: text/markdown
 Requires-Dist: numpy
 Provides-Extra: cuda
@@ -14,7 +14,7 @@ Requires-Dist: cupy; extra == "cuda"
   <img src="https://github.com/insane-machines/fsh/blob/main/fsh/fsh.egg-info/logo.jpg"></img>
 </h1>
 <h1 align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=00FFAA&center=true&vCenter=true&width=500&lines=Hi,+we're+Insane+Machines!;Welcome+to++our+machinelearning+library;named+Forward+Stepwise+Heuristics!" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=00FFAA&center=true&vCenter=true&width=500&lines=Hi,+I'm+nikitaforsh!;Welcome+to++our+machinelearning+library;named+GradForge!" alt="Typing SVG" />
 </h1>
 
 <p align="center">

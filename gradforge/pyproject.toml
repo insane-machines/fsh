@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gradforge" 
-version = "2.0"
+version = "2.0.1"
 description = "Machinelearning library"
 readme = "README.md"
 license = {text = "MIT"}

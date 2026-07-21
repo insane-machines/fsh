@@ -76,7 +76,7 @@ sdist = { url = "https://files.pythonhosted.org/packages/85/86/e99f52f4a50e5faaf
 
 [[package]]
 name = "gradforge"
-version = "2.0"
+version = "2.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "numpy" },
