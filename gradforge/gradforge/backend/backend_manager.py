@@ -1,7 +1,7 @@
 from .backend import Backend
-
+from typing import Optional
 class BackendManager():
-    _backend = None
+    _backend: Optional[Backend] = None
 
     @staticmethod
     def set_backend(backend_adapter: Backend):
