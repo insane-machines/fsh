@@ -15,4 +15,3 @@ class BackendManager():
             raise RuntimeError("Backend is not initialized yet. \
                                Please set backend with BackendManager.set(<your backend>)")
         return BackendManager._backend
-         
