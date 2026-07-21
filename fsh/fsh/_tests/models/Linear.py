@@ -1,7 +1,7 @@
 import numpy as np
-from fsh.utils.preprocess import preprocessing
-from fsh.metrics.std_metrics import metrics
-from fsh.errors.errors import DataError, MatchError, ProcessError
+from data.preprocessing.preprocess import preprocessing
+from metrics.std_metrics import metrics
+from _exceptions._errors import DataError, MatchError, ProcessError
 
 class Linear():
     def __init__(self, n_features=1, learning_rate = 0.001):
@@ -44,7 +44,7 @@ class Linear():
 
             x_data = np.split(x, np.arange(batch_size, len(x), batch_size))
             y_data = np.split(y, np.arange(batch_size, len(y), batch_size))
-            for current_batch_num, x_batch, y_batch in enumerate(zip(x_data, y_data)):
+            for current_batch_num, (x_batch, y_batch) in enumerate(zip(x_data, y_data)): 
                 weight_gradient, bias_gradient = self.calculate_gradients(x_batch, y_batch, training=training)
             
                 self.weight -= self.learning_rate * weight_gradient

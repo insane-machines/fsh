@@ -3,6 +3,7 @@ import numpy as np
 from math import sqrt
 
 class metrics():
+    
     @staticmethod
     def mse(y, y_pred, training=False):
         y       = preprocessing.to_array(y)
