@@ -1,4 +1,4 @@
-from fsh.data.preprocessing.preprocess import preprocessing
+from data.preprocessing.preprocess import preprocessing
 import numpy as np
 from math import sqrt
 

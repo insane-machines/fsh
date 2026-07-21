@@ -1,2 +1,3 @@
 from tensor import Tensor
-__all__ = ["Tensor"]
+from operation import Operation
+__all__ = ["Tensor", "Operation"]
