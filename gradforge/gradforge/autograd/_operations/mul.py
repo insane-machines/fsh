@@ -3,7 +3,7 @@ from tensor import Tensor
 
 class Mul(Operation):
     def __init__(self) -> None:
-        self.parents: list[Tensor] = []
+        super().__init__()
 
     def forward(self, a: Tensor, b: Tensor) -> Tensor:
         self.parents.append(a)
@@ -21,9 +21,13 @@ class Mul(Operation):
 
         if a.requires_grad:
             a.grad += b.data * result_grad
-            a.grad_fn.backward(a.grad)  
+            
+            if a.grad_fn is not None:
+                a.grad_fn.backward(a.grad) 
 
         if b.requires_grad:
             b.grad += a.data * result_grad
-            b.grad_fn.backward(b.grad)
+            
+            if b.grad_fn is not None:
+                b.grad_fn.backward(b.grad) 
         

@@ -3,15 +3,15 @@ from tensor import Tensor
 
 class Add(Operation):
     def __init__(self) -> None:
-        self.parents: list[Tensor] = []
+        super().__init__()
 
     def forward(self, a: Tensor, b: Tensor) -> Tensor:
         self.parents.append(a)
         self.parents.append(b)
         
         result = Tensor(a.data + b.data, requires_grad=a.requires_grad or b.requires_grad)
-        result.grad_fn = self # type: ignore
-
+        result.grad_fn = self
+        
         return result 
 
     
@@ -21,9 +21,13 @@ class Add(Operation):
 
         if a.requires_grad:
             a.grad += result_grad
-            a.grad_fn.backward(a.grad)  
+
+            if a.grad_fn is not None:
+                a.grad_fn.backward(a.grad)  
 
         if b.requires_grad:
             b.grad += result_grad
-            b.grad_fn.backward(b.grad)
+
+            if b.grad_fn is not None:
+                b.grad_fn.backward(b.grad)
         

@@ -3,11 +3,11 @@ from tensor import Tensor
 
 class Pow(Operation):
     def __init__(self) -> None:
-        self.parent: Tensor = None # type: ignore
+        super().__init__()
         self.n = 0
 
     def forward(self, x: Tensor, n) -> Tensor:
-        self.parent = x
+        self.parents[0] = x
         self.n = n
 
         result = Tensor(x.data^n, requires_grad=x.requires_grad)
@@ -17,10 +17,12 @@ class Pow(Operation):
 
     
     def backward(self, result_grad):
-        x = self.parent
+        x = self.parents[0]
         n = self.n
         
         x.grad += result_grad * n * x^(n - 1)
-        x.grad_fn.backward(x.grad)
+
+        if x.grad_fn is not None:
+                x.grad_fn.backward(x.grad) 
 
         

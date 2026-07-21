@@ -2,6 +2,7 @@ from backend.backend_manager import BackendManager
 from tensor import Tensor
 from operation import Operation
 from _operations import mul, matmul, sub, div, add
+from typing import Optional
 
 class Tensor():
 
@@ -9,7 +10,7 @@ class Tensor():
         self.data = data
         self.requires_grad: bool = requires_grad
         self.grad = 0
-        self.grad_fn: Operation = None # type: ignore
+        self.grad_fn: Optional[Operation] = None 
         self.backend = BackendManager._backend
 
     def __mul__(self, other: Tensor):
