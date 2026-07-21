@@ -1,7 +1,7 @@
 from autograd.operation import Operation
 from tensor import Tensor
 
-class PowOperation(Operation):
+class Pow(Operation):
     def __init__(self) -> None:
         self.parent: Tensor = None # type: ignore
         self.n = 0

@@ -1,7 +1,7 @@
 from autograd.operation import Operation
 from tensor import Tensor
 
-class MulOperation(Operation):
+class Mul(Operation):
     def __init__(self) -> None:
         self.parents: list[Tensor] = []
 

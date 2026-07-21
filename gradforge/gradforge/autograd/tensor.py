@@ -13,16 +13,16 @@ class Tensor():
         self.backend = BackendManager._backend
 
     def __mul__(self, other: Tensor):
-        return mul.MulOperation().forward(self, other)
+        return mul.Mul().forward(self, other)
 
     def __matmul__(self, other: Tensor):
-        return matmul.MatmulOperation().forward(self, other)
+        return matmul.Matmul().forward(self, other)
 
     def __add__(self, other: Tensor):
-        return add.AddOperation().forward(self, other)
+        return add.Add().forward(self, other)
 
     def __sub__(self, other: Tensor):
-        return sub.SubOperation().forward(self, other)
+        return sub.Sub().forward(self, other)
 
     def __truediv__(self, other: Tensor):
-        return div.DivOperation().forward(self, other)
+        return div.Div().forward(self, other)
