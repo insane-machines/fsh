@@ -6,7 +6,7 @@ from typing import Optional
 class Operation(ABC):
     def __init__(self) -> None:
         super().__init__()
-        self.parents: list[Tensor] = []
+        self._parents: list[Tensor] = []
         self._backend: Optional[Backend] = BackendManager._backend
 
     @abstractmethod
