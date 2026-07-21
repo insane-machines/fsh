@@ -57,11 +57,34 @@ wheels = [
 ]
 
 [[package]]
-name = "fsh"
-version = "1.3.7"
+name = "cuda-pathfinder"
+version = "1.5.6"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d2/53/8fc9b0cdc5b7f62746e6a01b85b6461e5ae27f871010a5fcf8fa6950766d/cuda_pathfinder-1.5.6-py3-none-any.whl", hash = "sha256:7e4c07c117b78ba1fb35dac4c444d21f3677b1b1ff56175c53a8e3025c5b43c0", size = 52972, upload-time = "2026-06-30T00:58:04.34Z" },
+]
+
+[[package]]
+name = "cupy"
+version = "14.1.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "cuda-pathfinder" },
+    { name = "numpy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/85/86/e99f52f4a50e5faaf4932cf3574d64d870bce224314be7fca91a6d02cda7/cupy-14.1.1.tar.gz", hash = "sha256:3d4d193a5b028e1823d1d44fe6268364d8fb76c3793ad4e28e1427c56ceb2f80", size = 3953009, upload-time = "2026-06-01T04:55:30.379Z" }
+
+[[package]]
+name = "gradforge"
+version = "2.0"
 source = { editable = "." }
 dependencies = [
     { name = "numpy" },
+]
+
+[package.optional-dependencies]
+cuda = [
+    { name = "cupy" },
 ]
 
 [package.dev-dependencies]
@@ -72,7 +95,11 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "numpy" }]
+requires-dist = [
+    { name = "cupy", marker = "extra == 'cuda'" },
+    { name = "numpy" },
+]
+provides-extras = ["cuda"]
 
 [package.metadata.requires-dev]
 dev = [
