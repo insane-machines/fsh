@@ -11,7 +11,9 @@ class BackendManager():
 
     @staticmethod
     def get_backend():
-        if BackendManager._backend is None:
+        if BackendManager._backend is not None:
+            return BackendManager._backend
+        else: 
             raise RuntimeError("Backend is not initialized yet. \
                                Please set backend with BackendManager.set(<your backend>)")
-        return BackendManager._backend
+        

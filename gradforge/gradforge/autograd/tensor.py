@@ -1,4 +1,5 @@
 from backend.backend_manager import BackendManager
+from backend.backend import Backend
 from tensor import Tensor
 from operation import Operation
 from _operations import mul, matmul, sub, div, add
@@ -11,7 +12,7 @@ class Tensor():
         self.requires_grad: bool = requires_grad
         self.grad = 0
         self.grad_fn: Optional[Operation] = None 
-        self.backend = BackendManager._backend
+        self.backend: Optional[Backend] = BackendManager.get_backend()
 
     def __mul__(self, other: Tensor):
         return mul.Mul().forward(self, other)

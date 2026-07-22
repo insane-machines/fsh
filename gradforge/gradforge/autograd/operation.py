@@ -7,7 +7,7 @@ class Operation(ABC):
     def __init__(self) -> None:
         super().__init__()
         self._parents: list[Tensor] = []
-        self._backend: Optional[Backend] = BackendManager._backend
+        self._backend: Optional[Backend] = BackendManager.get_backend() 
 
     @abstractmethod
     def forward(self, a, b) -> Tensor:
