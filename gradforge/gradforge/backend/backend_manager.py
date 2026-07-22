@@ -7,6 +7,7 @@ class BackendManager():
     def set_backend(backend_adapter: Backend):
         if backend_adapter is None:
             raise ValueError("Backend adapter cannot be None")
+        
         BackendManager._backend = backend_adapter
 
     @staticmethod
