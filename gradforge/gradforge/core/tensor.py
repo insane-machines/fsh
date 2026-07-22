@@ -1,9 +1,7 @@
 from backend.backend_manager import BackendManager
-from backend.backend import Backend
 from gradforge.core.tensor import Tensor
 from autograd.operation import Operation
 from autograd._operations import mul, matmul, sub, div, add
-from typing import Optional
 
 class Tensor():
 
@@ -11,8 +9,8 @@ class Tensor():
         self.data = data
         self.requires_grad: bool = requires_grad
         self.grad = 0
-        self.grad_fn: Optional[Operation] = None 
-        self.backend: Optional[Backend] = BackendManager.get_backend()
+        self.grad_fn: Operation = None # type: ignore
+        self.backend = BackendManager._backend
 
     def __mul__(self, other: Tensor):
         return mul.Mul().forward(self, other)
