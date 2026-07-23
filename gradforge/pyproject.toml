@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gradforge" 
+version = "2.0.1"
+description = "Machinelearning library"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "insane-machines", email = "forshnikita@gmail.com"}]
+dependencies = [
+    "numpy",
+    "pytest>=9.1.1",
+] 
+
+[project.urls]
+Homepage = "https://github.com/nikitaforsh/fsh"
+
+[project.optional-dependencies]
+cuda = [
+    "cupy"
+]
+
+[tool.setuptools.packages.find]
+include = ["gradforge*"]
+
+[dependency-groups]
+dev = [
+    "mypy>=2.3.0",
+    "pytest>=9.1.1",
+    "ruff>=0.15.22",
+]
