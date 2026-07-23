@@ -7,6 +7,7 @@ License: MIT
 Project-URL: Homepage, https://github.com/nikitaforsh/fsh
 Description-Content-Type: text/markdown
 Requires-Dist: numpy
+Requires-Dist: pytest>=9.1.1
 Provides-Extra: cuda
 Requires-Dist: cupy; extra == "cuda"
 

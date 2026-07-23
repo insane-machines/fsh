@@ -80,6 +80,7 @@ version = "2.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "numpy" },
+    { name = "pytest" },
 ]
 
 [package.optional-dependencies]
@@ -98,6 +99,7 @@ dev = [
 requires-dist = [
     { name = "cupy", marker = "extra == 'cuda'" },
     { name = "numpy" },
+    { name = "pytest", specifier = ">=9.1.1" },
 ]
 provides-extras = ["cuda"]
 
