@@ -2,50 +2,71 @@ from abc import ABC, abstractmethod
 class Backend(ABC):
 
     @abstractmethod
-    def convert(data):
-        pass
+    def convert(self, data):
+        return data
 
     #Binary operations
     @abstractmethod
-    def add(a, b):
+    def add(self, a, b):
         pass
 
     @abstractmethod
-    def div(a, b):
+    def div(self, a, b):
         pass
 
     @abstractmethod
-    def mul(a, b):
+    def mul(self, a, b):
         pass
 
     @abstractmethod
-    def sub(a, b):
+    def sub(self, a, b):
         pass
 
     #Matrix operations
     @abstractmethod
-    def matmul(a, b):
+    def matmul(self, a, b):
         pass
 
     @abstractmethod
-    def transpose(matrix):
-        pass
+    def transpose(self, matrix):
+        return matrix
 
     #Unary operations
     @abstractmethod
-    def relu(x):
-        pass
+    def relu(self, x):
+        return x
 
     @abstractmethod
-    def sigmoid(x):
-        pass
+    def sigmoid(self, x):
+        return x
 
     @abstractmethod
-    def tanh(x):
-        pass
+    def tanh(self, x):
+        return x
 
     @abstractmethod
-    def softmax(x):
-        pass
+    def softmax(self, x):
+        return x
+
+    @abstractmethod
+    def mean(self, array):
+        return array
+
+    @abstractmethod
+    def std(self, array):
+        return array
+
+    @abstractmethod
+    def abs(self, array):
+        return array
+
+    @abstractmethod
+    def zeros_like(self, array):
+        return array
+
+    @abstractmethod
+    def ones_like(self, array):
+        return array
+
 
     

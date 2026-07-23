@@ -1,1 +1,2 @@
-__all__ = ["std_callbacks"]
+from .std_callbacks import callbacks
+__all__ = ["callbacks"]

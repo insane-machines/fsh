@@ -1,3 +1,4 @@
-__all__ = ["std_metrics"]
+from .std_metrics import metrics
+__all__ = ["metrics"]
 
 
