@@ -19,19 +19,15 @@ class Div(Operation):
         return result 
 
     
-    def backward(self, result_grad):
+    def backward(self, result_grad) -> list:
         a: "Tensor" = self._parents[0]
         b: "Tensor" = self._parents[1]
 
         if a.requires_grad:
-            a.grad += result_grad / b.data if b.data != 0 else 0
-            
-            if a.grad_fn is not None:
-                a.grad_fn.backward(a.grad)  
+            a.grad += result_grad / b.data if b.data != 0 else 0 
 
         if b.requires_grad:
-            b.grad += (- a.data / b.data ^ 2) * result_grad if b.data != 0 else 0
-            
-            if b.grad_fn is not None:
-                b.grad_fn.backward(b.grad)  
+            b.grad += (- a.data / b.data ^ 2) * result_grad if b.data != 0 else 0 
+
+        return [(a, a.grad), (b, b.grad)]
         

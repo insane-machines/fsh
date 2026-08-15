@@ -1,11 +1,12 @@
 from __future__ import annotations
 from ..backend.backend_manager import BackendManager
 from ..backend.backend import Backend
+from ..autograd._operations import mul, matmul, sub, div, add, pow
+from typing import Optional
+
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ..autograd.operation import Operation
-from ..autograd._operations import mul, matmul, sub, div, add
-from typing import Optional
 
 class Tensor():
 
@@ -31,9 +32,6 @@ class Tensor():
     def __truediv__(self, other):
         return div.Div().forward(self, other)
 
-    def backward(self):
-        start_grad = self.backend.ones_like(self.data)
-        if self.grad_fn:
-            self.grad_fn.backward(start_grad)
-        else:
-            raise RuntimeError("Backward function was called but not set")
+    def __pow__(self, other):
+        return pow.Pow().forward(self, other)
+        

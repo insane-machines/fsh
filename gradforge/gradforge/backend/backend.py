@@ -68,5 +68,13 @@ class Backend(ABC):
     def ones_like(self, array):
         return array
 
+    @abstractmethod
+    def array_zeros(self, shape):
+        return shape
+
+    @abstractmethod
+    def array_ones(self, shape):
+        return shape
+
 
     

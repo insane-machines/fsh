@@ -19,7 +19,7 @@ class Add(Operation):
         return result 
 
     
-    def backward(self, result_grad):
+    def backward(self, result_grad) -> list:
         from ...core.tensor import Tensor
         
         a: Tensor = self._parents[0]
@@ -28,11 +28,8 @@ class Add(Operation):
         if a.requires_grad:
             a.grad += result_grad
 
-            if a.grad_fn is not None:
-                a.grad_fn.backward(a.grad)  
-
         if b.requires_grad:
             b.grad += result_grad
-            if b.grad_fn is not None:
-                b.grad_fn.backward(b.grad)
+
+        return [(a, a.grad), (b, b.grad)]
         

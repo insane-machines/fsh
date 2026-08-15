@@ -18,19 +18,15 @@ class Mul(Operation):
         return result 
 
     
-    def backward(self, result_grad):
+    def backward(self, result_grad) -> list:
         a: "Tensor" = self._parents[0]
         b: "Tensor" = self._parents[1]
 
         if a.requires_grad:
             a.grad += b.data * result_grad
-            
-            if a.grad_fn is not None:
-                a.grad_fn.backward(a.grad) 
 
         if b.requires_grad:
             b.grad += a.data * result_grad
-            
-            if b.grad_fn is not None:
-                b.grad_fn.backward(b.grad) 
+
+        return [(a, a.grad), (b, b.grad)]
         

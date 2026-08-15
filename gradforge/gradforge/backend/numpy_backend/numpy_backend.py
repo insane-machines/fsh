@@ -53,4 +53,11 @@ class NumpyBackend(Backend):
 
     def ones_like(self, array):
         return np.ones_like(array)
+
+    def array_zeros(self, shape):
+        return np.zeros(shape)
+
+    def array_ones(self, shape):
+        return np.ones(shape)
+        
     

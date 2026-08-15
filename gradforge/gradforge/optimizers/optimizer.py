@@ -8,3 +8,7 @@ class Optimizer(ABC):
     @abstractmethod
     def step():
         pass
+
+    @abstractmethod
+    def zero_grad():
+        pass

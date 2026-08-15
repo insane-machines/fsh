@@ -18,13 +18,12 @@ class Pow(Operation):
         return result 
 
     
-    def backward(self, result_grad):
+    def backward(self, result_grad) -> list:
         x: "Tensor" = self._parents[0]
         n = self.n
         
-        x.grad += result_grad * n * x.data^(n - 1)
+        x.grad += result_grad * n * x.data**(n - 1)
 
-        if x.grad_fn is not None:
-                x.grad_fn.backward(x.grad) 
+        return [(x, x.grad)]
 
         

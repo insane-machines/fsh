@@ -8,4 +8,8 @@ class Layer(ABC):
     def train():
         pass
 
+    @abstractmethod
+    def return_parameters():
+        pass
+
     

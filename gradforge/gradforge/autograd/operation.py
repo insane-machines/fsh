@@ -16,5 +16,5 @@ class Operation(ABC):
         pass 
 
     @abstractmethod
-    def backward(self, result_grad):
+    def backward(self, result_grad) -> list:
         pass 
