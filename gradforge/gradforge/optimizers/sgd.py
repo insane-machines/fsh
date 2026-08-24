@@ -10,4 +10,4 @@ class SGD(Optimizer):
 
     def zero_grad(self, params: list[Tensor]):
         for param in params:
-            param.grad = param.backend.zeros_like(param.data)
+            param.grad = param.backend.zeros_like(param.data)   
