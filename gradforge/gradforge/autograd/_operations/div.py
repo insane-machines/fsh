@@ -4,8 +4,8 @@ if TYPE_CHECKING:
     from ...core.tensor import Tensor
 
 class Div(Operation):
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, backend) -> None:
+        super().__init__(backend)
 
     def forward(self, a: "Tensor", b: "Tensor") -> "Tensor":
         from ...core.tensor import Tensor

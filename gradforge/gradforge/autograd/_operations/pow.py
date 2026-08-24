@@ -3,8 +3,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ...core.tensor import Tensor
 class Pow(Operation):
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, backend) -> None:
+        super().__init__(backend)
         self.n = 0
 
     def forward(self, x: "Tensor", n) -> "Tensor":

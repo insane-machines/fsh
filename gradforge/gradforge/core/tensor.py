@@ -18,20 +18,20 @@ class Tensor():
         self.data = self.backend.convert(data)
 
     def __mul__(self, other): 
-        return mul.Mul().forward(self, other)
+        return mul.Mul(self.backend).forward(self, other)
 
     def __matmul__(self, other):
-        return matmul.Matmul().forward(self, other)
+        return matmul.Matmul(self.backend).forward(self, other)
 
     def __add__(self, other):
-        return add.Add().forward(self, other)
+        return add.Add(self.backend).forward(self, other)
 
     def __sub__(self, other):
-        return sub.Sub().forward(self, other)
+        return sub.Sub(self.backend).forward(self, other)
 
     def __truediv__(self, other):
-        return div.Div().forward(self, other)
+        return div.Div(self.backend).forward(self, other)
 
     def __pow__(self, other):
-        return pow.Pow().forward(self, other)
+        return pow.Pow(self.backend).forward(self, other)
         

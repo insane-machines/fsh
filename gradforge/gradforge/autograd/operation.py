@@ -4,12 +4,11 @@ from ..backend.backend import Backend
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ..core.tensor import Tensor
-from ..backend.backend_manager import BackendManager
 class Operation(ABC):
-    def __init__(self) -> None:
+    def __init__(self, backend: Backend) -> None:
         super().__init__()
         self._parents: list["Tensor"] = []
-        self._backend: Backend = BackendManager.get_backend() 
+        self._backend: Backend = backend
 
     @abstractmethod
     def forward(self, a, b) -> "Tensor":
