@@ -76,5 +76,10 @@ class Backend(ABC):
     def array_ones(self, shape):
         return shape
 
+    @abstractmethod
+    def is_native(self, data) -> bool:
+        pass
+
+
 
     

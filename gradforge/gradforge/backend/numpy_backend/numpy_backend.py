@@ -4,7 +4,10 @@ import numpy as np
 class NumpyBackend(Backend):
 
     def convert(self, data) -> np.ndarray:
-        return np.array(data, dtype=np.float32)
+        if not self.is_native(data):
+            return np.array(data, dtype=np.float32)
+
+        return data
 
     #Binary operations
     def add(self, a, b):
@@ -59,5 +62,11 @@ class NumpyBackend(Backend):
 
     def array_ones(self, shape):
         return np.ones(shape)
+
+    def is_native(self, data) -> bool:
+        if type(data) is np.ndarray:
+            return True
+        else: 
+            return False
         
     
