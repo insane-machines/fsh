@@ -1,6 +1,9 @@
 from gradforge.core.tensor import Tensor
-from ..optimizers.sgd import SGD
-from ..autograd.standard_engine import StandardEngine
+from gradforge.optimizers.sgd import SGD
+from gradforge.autograd.standard_engine import StandardEngine
+import tracemalloc
+
+tracemalloc.start()
 
 class Linear:
     def __init__(self, x: Tensor, y: Tensor):
@@ -29,13 +32,21 @@ class Linear:
 
         print(self.x.data @ self.w.data)
 
-x = Tensor([[4], [8], [9]])
-y = Tensor([[8], [16], [18]])
-test = Tensor([[9], [10]])
+x       = Tensor([[4], [8], [9]])
+y       = Tensor([[8], [16], [18]])
+test    = Tensor([[9], [10]])
 assert x.data.shape == y.data.shape
+
+before = tracemalloc.take_snapshot()
 
 model = Linear(x, y)
 model.train(epochs=10000)
 
+after = tracemalloc.take_snapshot()
+
 print(test.data @ model.w.data)
 print(model.w.data.shape)
+
+stats = after.compare_to(before, "lineno")
+for result in stats[:20]:
+    print(result)
