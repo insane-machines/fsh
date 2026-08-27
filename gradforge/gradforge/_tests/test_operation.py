@@ -1,17 +1,11 @@
-from gradforge.core.tensor import Tensor
-import tracemalloc
+import timeit
 
-tracemalloc.start()
-before = tracemalloc.take_snapshot()
+setup = "from gradforge.core.tensor import Tensor; a = Tensor([5]); b = Tensor([6])"
 
-a = Tensor([5])
-b = Tensor([6])
+result = timeit.repeat("c = a + b", setup=setup, number=100000, repeat=10)
 
-for _ in range(100000):
-    c = a + b
+best_time = min(result)         
+time_per_op = best_time / 100_000
+print(time_per_op * 1000000)
 
-after = tracemalloc.take_snapshot()
-stats = after.compare_to(before, "lineno")
-
-for stat in stats[:20]:
-    print(stat)
+#0.8082507399922179

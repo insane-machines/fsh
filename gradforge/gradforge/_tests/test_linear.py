@@ -23,7 +23,7 @@ class Linear:
         optimizer = SGD(learning_rate=1e-3)
 
         for epoch in range(epochs):
-            y_pred  =  self.x @ self.w
+            y_pred  = self.x @ self.w
             error   = self.y - y_pred
             loss    = error ** 2
             engine.backward(loss)
@@ -48,5 +48,7 @@ print(test.data @ model.w.data)
 print(model.w.data.shape)
 
 stats = after.compare_to(before, "lineno")
-for result in stats[:20]:
+for result in stats[:50]:
     print(result)
+
+# 0.757 seconds
