@@ -5,28 +5,21 @@ if TYPE_CHECKING:
 class Mul(Operation):
     def __init__(self, backend) -> None:
         super().__init__(backend)
+        self.parent_data = (0, 0)
 
-    def forward(self, a: "Tensor", b: "Tensor") -> "Tensor":
-        from ...core.tensor import Tensor
+    def forward(self, a, b):
 
-        self._parents.append(a)
-        self._parents.append(b)
-        
-        result = Tensor(self._backend.mul(a.data, b.data), requires_grad=a.requires_grad or b.requires_grad)
-        result.grad_fn = self 
+        self.parent_data = (a, b)
+        result = self._backend.mul(a, b)
 
         return result 
 
     
-    def backward(self, result_grad) -> list:
-        a: "Tensor" = self._parents[0]
-        b: "Tensor" = self._parents[1]
+    def backward(self, result_grad) -> tuple:
+        a_data, b_data = self.parent_data
 
-        if a.requires_grad:
-            a.grad += b.data * result_grad
+        a_grad = b_data * result_grad
+        b_grad = a_data * result_grad
 
-        if b.requires_grad:
-            b.grad += a.data * result_grad
-
-        return [(a, a.grad), (b, b.grad)]
+        return (a_grad, b_grad)
         

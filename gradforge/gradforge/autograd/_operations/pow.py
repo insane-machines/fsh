@@ -1,29 +1,26 @@
 from ...autograd.operation import Operation
-from typing import TYPE_CHECKING
-if TYPE_CHECKING:
-    from ...core.tensor import Tensor
 class Pow(Operation):
     def __init__(self, backend) -> None:
         super().__init__(backend)
         self.n = 0
+        self.parent_data = 0
 
-    def forward(self, x: "Tensor", n) -> "Tensor":
-        from ...core.tensor import Tensor
-        self._parents.append(x)
+    def forward(self, x, n):
+
+        self.parent_data = x
         self.n = n
 
-        result = Tensor(x.data ** n, requires_grad=x.requires_grad)
-        result.grad_fn = self 
+        result = x ** n
 
         return result 
 
     
     def backward(self, result_grad) -> list:
-        x: "Tensor" = self._parents[0]
+        x_data = self.parent_data
         n = self.n
         
-        x.grad += result_grad * n * x.data**(n - 1)
+        x_grad = result_grad * n * x_data**(n - 1)
 
-        return [(x, x.grad)]
+        return [x_grad]
 
         

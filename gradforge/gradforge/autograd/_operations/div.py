@@ -1,33 +1,23 @@
 from ...autograd.operation import Operation
-from typing import TYPE_CHECKING
-if TYPE_CHECKING:
-    from ...core.tensor import Tensor
 
 class Div(Operation):
     def __init__(self, backend) -> None:
         super().__init__(backend)
+        self.parent_data = (0, 0)
 
-    def forward(self, a: "Tensor", b: "Tensor") -> "Tensor":
-        from ...core.tensor import Tensor
-
-        self._parents.append(a)
-        self._parents.append(b)
+    def forward(self, a, b):
         
-        result = Tensor(self._backend.div(a, b), requires_grad=a.requires_grad or b.requires_grad)
-        result.grad_fn = self # type: ignore
+        result = self._backend.div(a, b)
+        self.parent_data = (a, b)
 
         return result 
 
     
-    def backward(self, result_grad) -> list:
-        a: "Tensor" = self._parents[0]
-        b: "Tensor" = self._parents[1]
+    def backward(self, result_grad) -> tuple:
+        a_data, b_data = self.parent_data
 
-        if a.requires_grad:
-            a.grad += result_grad / b.data if b.data != 0 else 0 
+        a_grad = result_grad / b_data if b_data != 0 else 0 
+        b_grad = (- a_data / b_data ^ 2) * result_grad if b_data != 0 else 0 
 
-        if b.requires_grad:
-            b.grad += (- a.data / b.data ^ 2) * result_grad if b.data != 0 else 0 
-
-        return [(a, a.grad), (b, b.grad)]
+        return (a_grad, b_grad)
         
