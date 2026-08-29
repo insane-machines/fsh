@@ -16,6 +16,9 @@ class Linear:
         return [attr_val\
                  for attr_val in self.__dict__.values()\
                       if attr_val.requires_grad]
+
+    def predict(self, x: Tensor) -> Tensor:
+        return x @ self.w
     
     def train(self, epochs):
         self.w.data = self.x.backend.array_zeros((self.x.data.shape[1], y.data.shape[1]))
@@ -23,7 +26,7 @@ class Linear:
         optimizer = SGD(learning_rate=1e-3)
 
         for epoch in range(epochs):
-            y_pred  = self.x @ self.w
+            y_pred  = self.predict(x)
             error   = self.y - y_pred
             loss    = error ** 2
             engine.backward(loss)
@@ -52,3 +55,4 @@ for result in stats[:50]:
     print(result)
 
 # 0.757 seconds
+# Backend allocations needs to optimize

@@ -5,11 +5,11 @@ class Layer(ABC):
         super().__init__()
 
     @abstractmethod
-    def train():
+    def predict():
         pass
 
     @abstractmethod
-    def return_parameters():
+    def params() -> list:
         pass
 
     
